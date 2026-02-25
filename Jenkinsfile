@@ -9,21 +9,21 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                sh 'chmod +x mvnw'
-                sh './mvnw clean package -DskipTests'                
+                bat 'chmod +x mvnw'
+                bat './mvnw clean package -DskipTests'                
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE:latest .'
+                bat 'docker build -t $IMAGE:latest .'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f k8s/'
-                sh 'kubectl rollout status deployment/hello-java'
+                bat 'kubectl apply -f k8s/'
+                bat 'kubectl rollout status deployment/hello-java'
             }
         }
     }
