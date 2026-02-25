@@ -13,7 +13,8 @@ spec:
         app: hello-java
     spec:
       containers:
-      - name: hello-java
-        image: manojravichandiran/hello-java:latest
+      - name: hello-java-jenkins
+        image: hello-java-jenkins:latest 
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
