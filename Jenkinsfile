@@ -9,14 +9,13 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                bat 'chmod +x mvnw'
-                bat './mvnw clean package -DskipTests'                
+                bat 'mvn clean package -DskipTests'                
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t $IMAGE:latest .'
+                bat 'docker build -t hello-java-jenkins:latest .'
             }
         }
 
