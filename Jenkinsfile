@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'JDK17'
+        maven 'Maven'
+    }    
     environment {
         IMAGE = "hello-java-jenkins"
     }
@@ -23,6 +27,8 @@ pipeline {
             steps {
                 bat 'kubectl apply -f k8s/'
                 bat 'kubectl rollout status deployment/hello-java'
+                bat 'kubectl get pods'
+                bat 'kubectl get services'
             }
         }
     }
